@@ -238,8 +238,9 @@ a:focus{
 
   #filters {
     background-color: rgb(63, 73, 50);
-    height: 300px;
+    height: 400px;
     border-radius: 0px 0px 30px 30px;
+    padding: 50px;
   }
   #choosefiltrs {
     padding: 20px;
