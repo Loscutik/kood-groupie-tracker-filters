@@ -1,0 +1,46 @@
+{{- /* Go Template */ -}}
+{{ define "title" }}
+  "Groupie Tracker"
+{{ end }}
+{{define "content"}}
+
+<main  class="cards">
+
+{{ range $i, $card := . }}
+  <a href="/info?id={{.Id}}" class="card" id="{{ .Id }}">
+    <div class="card_top">
+      <section class="card_left">
+          <img class="cover" src="{{ $card.Image }}" alt="{{ $card.Name }}">
+        <div class="info_details">  
+          <p class="info_row" id="creation">
+              <span id="title_creation" class="title" >Creation: </span>
+              {{ $card.CreationDate }}
+          </p>
+          <p class="info_row" id="album">
+              <span id="title_album" class="title" >The first album: </span>
+              {{ $card.FirstAlbum }}
+          </p>
+        </div>
+      </section>
+      <section class="card_right">
+        <h2 class="band_name title">{{ $card.Name }}</h2>
+        <div class="members">
+          <ul>
+            {{ range $card.Members }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+      </section>
+    </div>
+    <div class="card_bottom">
+      <button class="button">SEE MORE</button>
+    </div>
+  </a>
+  {{ else}}
+    No bands 
+  {{end}}
+
+</main> 
+
+{{end}}
