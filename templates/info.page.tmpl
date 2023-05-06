@@ -1,0 +1,35 @@
+{{- /* Go Template */ -}}
+{{ define "title" }}
+  "Groupie Tracker | Concerts details > {{ .Name }}"
+{{ end }}
+
+{{define "content"}}
+
+<section class="card details card_top" >
+      <section class="card_left">
+        <h2 class="band_name title">{{ .Name }}</h2>
+          <img class="cover" src="{{ .Image }}" alt="{{ .Name }}">
+        
+      </section>
+      <section class="card_right">
+        <ul class="location">
+          {{ range .DatesLocations }}
+          <li><p>{{ .Location }}: </p>
+            <ul class="date">
+              {{ range .Dates}}
+              <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </li>
+          {{ end }}
+        </ul>
+      </section>
+    </section>
+    <a class="stripe details button" href="/">
+      <i class="fa-sharp fa-solid fa-square-chevron-left"></i>
+      <i class="fa-solid fa-square-caret-left"></i>
+      <i class="fa-solid fa-user"></i>
+      &#10094; BACK
+    </a>
+
+{{ end }}
