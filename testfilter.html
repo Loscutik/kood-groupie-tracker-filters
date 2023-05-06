@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie tracker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Explora&family=Poiret+One&family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="templates/static/style.css">
+    <link rel="icon" sizes="192x192" href="/static/icon.svg">
+</head>
+
+<body id="body">
+  <header id="header">
+    <h1 class="hat">MUSIC</h1>
+    <div class="quote">Those who wish to sing always find a song.</div>
+  </header>
+
+ <!-- FILTERS -->
+
+  <div id="filters">
+    <form id="filtr" >
+    <p id="choosefiltrs">Choose filters:</p>
+    <p> Creation Date:</p>
+    <div class="slidecontainer">
+        <input type="range" min="1950" max="2023" value="1980" class="slider" id="myRange">
+        <p>Year: <span id="CreationYear"></span></p>
+      </div><br><br>
+      
+    <p> First Album Date:</p> <!-- FROM:... TO:...-->
+    <input type="range" min="1950" max="2023" value="1980" class="slider" id="myRange1">
+    <input type="range" min="1950" max="2023" value="1990" class="slider" id="myRange2"><br>
+    <p>Year: from <span id="CreationYear1"></span> to <span id="CreationYear2"></span></p><br><br>
+    <p> Number Of Members:</p> 
+    <input type="checkbox" name="1" value="1">
+    <label for="1">1</label>
+    <input type="checkbox" name="2" value="2">
+    <label for="2">2</label>
+    <input type="checkbox" name="3" value="3">
+    <label for="3">3</label>
+    <input type="checkbox" name="4" value="4">
+    <label for="4">4</label>
+    <input type="checkbox" name="5" value="5">
+    <label for="5">5</label>
+    <input type="checkbox" name="6" value="6">
+    <label for="6">6</label>
+    <input type="checkbox" name="7" value="7">
+    <label for="7">7</label><br><br>
+    <p> Locations Of Concerts:</p>
+    <select name="Locations">
+        <option value="Location 1">Location 1</option>
+        <option value="Location 2">Location 2</option>
+        <option value="Location 3">Location 3</option>
+        <option value="Location 4">Location 4</option>
+      </select><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+ <!-- END OF FILTERS -->
+
+  <main  class="cards">
+      <a href="testfilter.html" class="card">
+        <div class="card_top">
+          <section class="card_left">
+              <img class="cover" src="https://images.saymedia-content.com/.image/t_share/MTc0NDkxNzgyMzYzNDg5NjQw/vinyl-to-paper-how-to-write-an-album-review.jpg">
+            <div class="info_details">  
+              <p class="info_row" id="creation">
+                  <span id="title_creation" class="title" >Creation: </span>
+                  Date
+              </p>
+              <p class="info_row" id="album">
+                  <span id="title_album" class="title" >The first album: </span>
+                  Album
+              </p>
+            </div>
+          </section>
+          <section class="card_right">
+            <h2 class="band_name title">Name</h2>
+          </section>
+        </div>
+        <div class="card_bottom">
+          <button class="button">SEE MORE</button>
+        </div>
+      </a>
+    </main> 
+  
+  <footer id="footer">
+    <small>&copy; 2023 Created by: Olena Budarahina (Gitea username: obudarah), Kristina Volkova (Gitea username: Mustkass) for Kood/Johvi.</small>
+  </footer>
+</body>
+<script type="text/javascript" src="javascript.js"></script>
+</html>
