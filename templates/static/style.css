@@ -1,0 +1,288 @@
+/* Webfont: Aamiya-Regular */
+@font-face {
+  font-family: "Aamiya";
+  src: url("./fonts/Aamiya-Regular.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/Aamiya-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("./fonts/Aamiya-Regular.woff") format("woff"), /* Modern Browsers */
+       url("./fonts/Aamiya-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("./fonts/Aamiya-Regular.svg#Aamiya-Regular") format("svg"); /* Legacy iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* Webfont: Garute-Regular */
+@font-face {
+  font-family: "Garute";
+  src: url("./fonts/Garute-Regular.woff") format("woff"), /* Modern Browsers */
+       url("./fonts/Garute-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+*{
+  margin: 0;
+  padding: 0px;
+}
+
+body{
+  background-color: #E9E6DA;
+  box-sizing: border-box;
+  font-size: 100%;
+  font-family: Garute, sans-serif;
+}
+
+header{
+  text-align: center;
+  background-color: #323331;
+  color: #E9E6DA;
+  padding: 1rem;
+}
+h1 {
+  font-size: 3.5em;
+}
+
+
+.quote{
+  font-size: 1.5em;
+  font-family: Aamiya, sans-serif;
+  font-style: italic;
+}
+/*--------cards-----------*/
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+@media screen and (min-width: 900px) {
+  .cards {
+    margin: 0 3%;
+  }
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 600px;
+  margin: 2% 2%;
+  -width: 600px;
+  -align-items: stretch;
+  text-decoration: none;
+  background-color: #d2cbb5;
+  color: #1f1c1b;
+  cursor: pointer;  
+  background-image: url("img/guitar.png");
+  background-repeat: no-repeat;
+  background-position: right;
+}
+/*--- for the detail page ------*/
+.details{
+  flex-direction: row;
+  max-width: 750px;
+  margin: 2% auto;
+  cursor: auto;
+}
+
+.stripe{
+  display: block;
+  text-decoration: none;
+  background-color: #AC1A00;
+  text-align: left;
+  color: #EFEFEF;
+  margin: -1% auto 7%;
+  padding: 0.1rem 0;
+  font-size: 1.5rem;
+}
+/*--- end: for the detail page ------*/
+a {
+  transition: 1s;
+}
+a:hover{
+  cursor: pointer;
+  box-shadow: 1rem 0.5rem 0.5rem rgba(56, 53, 53, 0.2);
+}
+
+a:focus{
+  box-shadow: 1rem 0.5rem 0.5rem rgba(56, 53, 53, 0.2);
+}
+
+  .card_top {
+    
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    font-size: 1rem;
+    justify-content: center;
+    
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  /*-------left side-------*/
+  .card_left{
+    display: flex;
+    -flex: 0 1 284px;
+    -max-width: 50%;
+    -align-items: stretch;
+    width: 284px;
+    flex-direction: column;
+    align-content: center;
+  }
+
+    .card_left .band_name{
+      text-align: right;
+      margin: 5% 8% 0;
+    }
+    .cover {
+      margin: 8%;
+      -flex: 1;
+      box-shadow: 0.3rem 0.2rem 0.1rem rgba(56, 53, 53, 0.2);
+      max-height: 240px; 
+      max-width: 240px;
+    }
+
+    .info_details{
+      margin: 5% 8%;
+      font-size: 1rem;
+    }
+    
+    .card_left p{
+     line-height: 200%;
+    }
+    
+
+
+  /*-------right side-------*/
+  .card_right{
+    flex: 1 0 auto;
+    -width: calc(100% - 284px);
+    -min-width: 50%;
+  }
+  
+  .band_name{
+    margin: 6% 4% 2% 0.5%;
+    text-transform: uppercase;
+  }
+  
+  @counter-style music{
+    system: cyclic;
+    symbols: "♪";
+    suffix: "  ";
+  }
+  
+  ul{
+    list-style-type: music;
+    vertical-align: top;
+    margin: 5% 10%;
+  }
+  
+  ul.location p{
+    text-transform: capitalize;
+  }
+
+  li ul{
+    list-style: none;
+  }
+  
+  li {
+    line-height: 200%;
+    clear: both;
+  }
+  
+  li>p{
+    display: inline-block;
+    font-size: 1.2rem;
+  }
+  
+  .location, .date{
+    display: block;
+    margin-top: 15%;
+  }
+  
+  .date{
+    display: inline-block;
+    margin: 0 1% 7%  ;
+    float: right;
+    font-size: 1.1rem;
+    text-align: end;
+  }
+  
+  /*ul.date{
+  }*/
+
+
+  /*-------bottom-------*/
+  .card_bottom{
+    display: flex;
+    max-height: 5.5rem;
+  }
+
+  button{
+    
+    background-color: #AC1A00;
+    color: #EFEFEF;
+    max-width: 100%;
+    flex: 0 1 auto;
+    margin: 1rem auto;
+    border: 0;
+    padding: 0.5rem 2rem;
+    font-size: 2.2rem;
+    cursor: pointer;
+    font-family: Garute, sans-serif;
+  }
+
+  #filters {
+    background-color: rgb(63, 73, 50);
+    height: 300px;
+    border-radius: 0px 0px 30px 30px;
+  }
+  #choosefiltrs {
+    padding: 20px;
+    text-align: center;
+  }
+  .slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 50%; /* Full-width */
+    height: 10px; /* Specified height */
+    margin-left: 200px;
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 7px;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 8px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
