@@ -4,9 +4,84 @@
 {{ end }}
 {{define "content"}}
 
+<button>
+   <i class="fa-solid fa-filter"></i> 
+</button>
+
+<!-- FILTERS -->
+<form  action="/" method="GET" id="filters">
+  
+    <p id="choosefiltrs">Choose filters:</p>
+    <fieldset>
+      <legend>Creation Date:</legend>
+      <div class="slidecontainer">
+        <div>
+          <label for="volume">from</label>
+          <input type="range"  name="CreationDateFrom" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersValues.CreationDateFrom}} class="slider inYear" id="myRange">
+          <span class="outYear"></span>
+        </div>
+        <div>
+          <label for="volume">to</label>
+          <input type="range"  name="CreationDateTo" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersValues.CreationDateTo}} class="slider inYear" id="myRange">
+          <span class="outYear"></span>
+        </div>
+        <p>Year: <span id="demo"></span></p>
+        </div>
+    </fieldset>  
+    <fieldset>
+      <legend>First Album Date:</legend> 
+      <input type="date">
+    </fieldset>  
+    <fieldset>
+      <legend>Number Of Members:</legend> 
+      {{$flags := .FiltersValues.Members }}
+      <div>
+        {{range $index, $i := .FiltersConstrains.Members}}
+          <span>
+            <input type="checkbox" id={{$i}} name="Members" value={{$i}} {{if index $flags $index}}checked{{end}} />
+          </span>
+        {{end}}
+      </div>
+      <br>
+      <div>
+        {{range $index, $i := .FiltersConstrains.Members}}
+          <span>
+            <label for={{$i}}> {{$i}} </label>
+          </span>
+        {{end}}
+      </div>
+    </fieldset>  
+   
+  <fieldset>
+      <legend>Locations Of Concerts:</legend> 
+      <input type="text" id="location-filter" name="Location" list="location-list">
+    <datalist id="location-list">
+      <option id = "0" value="">--Please choose an option--</option>
+      {{$selected := .FiltersValues.Location }}
+      {{range $loc, $val := .FiltersConstrains.Locations}}
+          <option id={{$loc}} value={{$loc}} {{if eq $loc $selected}}selected{{end}} >{{$loc}}</option>
+      {{end}}
+    </datalist>
+  </fieldset>  
+
+<fieldset>
+    <legend>Name:</legend> 
+    <input type="text" name="Name"/>
+</fieldset>  
+      
+
+
+  {{/*<input type="range" id="FirstAlbumYear" name="FirstAlbumYear1" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersValues.FirstAlbumYear}}>*/}}
+
+  <input type="submit" value="OK">
+</form>
+<script>rangeValue()</script>
+ <!-- FILTERS -->
+
+
 <main  class="cards">
 
-{{ range $i, $card := . }}
+{{ range $i, $card := .Artists }}
   <a href="/info?id={{.Id}}" class="card" id="{{ .Id }}">
     <div class="card_top">
       <section class="card_left">

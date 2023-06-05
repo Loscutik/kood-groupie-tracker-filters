@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"net/http"
 	"reflect"
 	"testing"
@@ -15,11 +16,11 @@ func TestGetAndUnmarshalJSON(t *testing.T) {
 		Relation:  "https://groupietrackers.herokuapp.com/api/relation",
 	}
 
-	var netClient = http.Client{
+	netClient := http.Client{
 		Timeout: time.Second * 10,
 	}
 
-	//res := response{}
+	// res := response{}
 	resa := Api{}
 	err := GetAndUnmarshalJSON(&netClient, "https://groupietrackers.herokuapp.com/api", &resa)
 	if err != nil {
@@ -59,11 +60,15 @@ func TestGetAtist(t *testing.T) {
 		Members:      []string{"Katheryn Elizabeth Hudson"},
 		CreationDate: 2001,
 		FirstAlbum:   "04-10-2008",
-		Locations:    "https://groupietrackers.herokuapp.com/api/locations/11",
+		Locations: &Locations{
+			Id:        11,
+			Locations: []string{"doha-qatar", "minnesota-usa", "illinois-usa", "california-usa", "mumbai-india"},
+			Dates:     &Dates{},
+		},
 		ConcertDates: "https://groupietrackers.herokuapp.com/api/dates/11",
 		Relations:    "https://groupietrackers.herokuapp.com/api/relation/11",
 	}
-	var netClient = http.Client{
+	netClient := http.Client{
 		Timeout: time.Second * 10,
 	}
 	ap, err := GetAPI(&netClient, API)
@@ -71,26 +76,28 @@ func TestGetAtist(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	artists, err := GetArtists(&netClient, &ap)
+	artists, err := GetArtists(&netClient, ap)
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	fmt.Println(artists[10].Locations.Dates)
 	if want.Id != artists[10].Id ||
 		want.Image != artists[10].Image ||
 		want.Name != artists[10].Name ||
 		want.Members[0] != artists[10].Members[0] ||
 		want.CreationDate != artists[10].CreationDate ||
 		want.FirstAlbum != artists[10].FirstAlbum ||
-		want.Locations != artists[10].Locations ||
+		want.Locations.Id != artists[10].Locations.Id ||
+		want.Locations.Locations[0] != artists[10].Locations.Locations[0] ||
 		want.ConcertDates != artists[10].ConcertDates ||
 		want.Relations != artists[10].Relations {
-		t.Fatalf("res is\n %v\nwanted\n %v\n", artists[11], want)
+		t.Fatalf("res is\n %v\nwanted\n %v\n", artists[10], want)
 	}
 }
 
 func TestLocation(t *testing.T) {
-	var netClient = http.Client{
+	netClient := http.Client{
 		Timeout: time.Second * 10,
 	}
 	ap, err := GetAPI(&netClient, API)
@@ -98,31 +105,29 @@ func TestLocation(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	byNum, err := GetLocationsNum(&netClient, &ap, 2)
+	byNum, err := GetLocationsNum(&netClient, ap, 2)
 	if err != nil {
 		t.Fatal("GetLocations - ", err)
 	}
 
-	bySet, err := GetLocationsSet(&netClient,&ap)
+	bySet, err := GetLocationsSet(&netClient, ap)
 	if err != nil {
-		t.Fatal("GetLocationsSet - ",err)
+		t.Fatal("GetLocationsSet - ", err)
 	}
-	
-	byAddr:=Locations{}
+
+	byAddr := Locations{}
 	err = GetAndUnmarshalJSON(&netClient, ap.Locations+"/2", &byAddr)
 	if err != nil {
 		t.Fatal("GetAndUnmarshalJSON - ", err)
 	}
 
 	if byAddr.Id == byNum.Id {
-		
-		t.Fatalf("err= %q\nlocatin obtained from GetLocations(&netClient, &ap, 2) is \n%#v\nlocatin obtained from GetLocationsSet(&netClient,&ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Locations+/2, &byAddr) is \n%#v\n",err, byNum, bySet[1], byAddr)
+		t.Fatalf("err= %q\nlocatin obtained from GetLocations(&netClient, ap, 2) is \n%#v\nlocatin obtained from GetLocationsSet(&netClient,ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Locations+/2, &byAddr) is \n%#v\n", err, byNum, bySet[1], byAddr)
 	}
-
 }
 
 func TestData(t *testing.T) {
-	var netClient = http.Client{
+	netClient := http.Client{
 		Timeout: time.Second * 10,
 	}
 	ap, err := GetAPI(&netClient, API)
@@ -130,31 +135,29 @@ func TestData(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	byNum, err := GetDatasNum(&netClient, &ap, 2)
+	byNum, err := GetDatasNum(&netClient, ap, 2)
 	if err != nil {
 		t.Fatal("GetDatas - ", err)
 	}
 
-	bySet, err := GetDataSet(&netClient,&ap)
+	bySet, err := GetDataSet(&netClient, ap)
 	if err != nil {
-		t.Fatal("GetDataSet - ",err)
+		t.Fatal("GetDataSet - ", err)
 	}
-	
-	byAddr:=Dates{}
+
+	byAddr := Dates{}
 	err = GetAndUnmarshalJSON(&netClient, ap.Dates+"/2", &byAddr)
 	if err != nil {
 		t.Fatal("GetAndUnmarshalJSON - ", err)
 	}
 
 	if byAddr.Id == byNum.Id {
-		
-		t.Fatalf("err= %q\nlocatin obtained from GetDatas(&netClient, &ap, 2) is \n%#v\nlocatin obtained from GetDataSet(&netClient,&ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Datas+/2, &byAddr) is \n%#v\n",err, byNum, bySet[1], byAddr)
+		t.Fatalf("err= %q\nlocatin obtained from GetDatas(&netClient, ap, 2) is \n%#v\nlocatin obtained from GetDataSet(&netClient,ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Datas+/2, &byAddr) is \n%#v\n", err, byNum, bySet[1], byAddr)
 	}
-
 }
 
-func TestRelaton(t *testing.T) {
-	var netClient = http.Client{
+func TestRelation(t *testing.T) {
+	netClient := http.Client{
 		Timeout: time.Second * 10,
 	}
 	ap, err := GetAPI(&netClient, API)
@@ -162,28 +165,23 @@ func TestRelaton(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	byNum, err := GetRelationNum(&netClient, &ap, 2)
+	byNum, err := GetRelationNum(&netClient, ap, 2)
 	if err != nil {
 		t.Fatal("GetRelation - ", err)
 	}
 
-	bySet, err := GetRelationSet(&netClient,&ap)
+	bySet, err := GetRelationSet(&netClient, ap)
 	if err != nil {
-		t.Fatal("GetRelationSet - ",err)
+		t.Fatal("GetRelationSet - ", err)
 	}
-	
-	byAddr:=Relation{}
+
+	byAddr := Relation{}
 	err = GetAndUnmarshalJSON(&netClient, ap.Relation+"/2", &byAddr)
 	if err != nil {
 		t.Fatal("GetAndUnmarshalJSON - ", err)
 	}
 
 	if byAddr.Id == byNum.Id {
-		
-		t.Fatalf("err= %q\nlocatin obtained from GetRelation(&netClient, &ap, 2) is \n%#v\nlocatin obtained from GetRelationSet(&netClient,&ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Relation+/2, &byAddr) is \n%#v\n",err, byNum, bySet[1], byAddr)
+		t.Fatalf("err= %q\nlocatin obtained from GetRelation(&netClient, ap, 2) is \n%#v\nlocatin obtained from GetRelationSet(&netClient,ap) is \n%#v\nlocatin obtained from GetAndUnmarshalJSON(&netClient, ap.Relation+/2, &byAddr) is \n%#v\n", err, byNum, bySet[1], byAddr)
 	}
-
 }
-
-
-
