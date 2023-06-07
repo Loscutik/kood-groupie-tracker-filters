@@ -225,9 +225,9 @@ func (app *application) homePageHandler(w http.ResponseWriter, r *http.Request) 
 	filtersValue.FirstAlbumDay = r.URL.Query().Get("FirstAlbumDay")
 	if filtersValue.FirstAlbumYear != "" {
 		value := filtersValue.FirstAlbumYear
-		if filtersValue.FirstAlbumMonth != "" {
+		if filtersValue.FirstAlbumMonth != "" && filtersValue.FirstAlbumMonth != "0" {
 			value += filtersValue.FirstAlbumMonth
-			if filtersValue.FirstAlbumDay != "" {
+			if filtersValue.FirstAlbumDay != ""  && filtersValue.FirstAlbumDay != "0"{
 				value += filtersValue.FirstAlbumDay
 				filters.AddGivenFilter(&filtersSet, filters.FilterFirstAlbumDateEq, value)
 			} else {

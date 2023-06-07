@@ -238,14 +238,44 @@ a:focus{
 
   #filters {
     background-color: rgb(63, 73, 50);
-    height: 400px;
+    background: linear-gradient(105deg, rgb(79, 88, 54), rgb(51, 59, 41));
+    height: 500px;
     border-radius: 0px 0px 30px 30px;
-    padding: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+    box-shadow: 3px 0px 10px #323331;
+ }
+
+  #filtr {
+    margin-left: 20%;
+    margin-right: 20%;
   }
+  
   #choosefiltrs {
     padding: 20px;
     text-align: center;
+    color: rgb(169, 158, 129);
+    font-family: "Garute";
+    font-size: 30px;
   }
+  #subbutt {
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+    border: 1px black;
+    margin-left: 15%;
+    background: linear-gradient(145deg, #04AA6D, #047149);
+    transition: 1s;
+  }
+  #subbutt:hover {
+    border-radius: 30px;
+    border: 1px black;
+    background: linear-gradient(145deg, #03925d, #04603e);
+    box-shadow: -5px -3px 10px #323331;
+  }
+
   .slidecontainer {
     width: 100%; /* Width of the outside container */
   }
@@ -254,7 +284,7 @@ a:focus{
   .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    width: 50%; /* Full-width */
+    width: 20%; /* Full-width */
     height: 10px; /* Specified height */
     margin-left: 200px;
     background: #d3d3d3; /* Grey background */
@@ -286,4 +316,8 @@ a:focus{
     height: 25px; /* Slider handle height */
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
+  }
+
+  #location-list option{
+    text-transform: capitalize;
   }

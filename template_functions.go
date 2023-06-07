@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 const (
@@ -15,13 +16,18 @@ func GetTemplate(a string, w http.ResponseWriter, s any) {
 		TEMPLATES_PATH + "base.layout.tmpl",
 		TEMPLATES_PATH + a,
 	}
-	tm, err := template.ParseFiles(site...)
+
+	funcMap := template.FuncMap{
+		// The name "title" is what the function will be called in the template text.
+		"nowYear": time.Now().Year,
+	}
+	tm, err := template.New("base.layout.tmpl").Funcs(funcMap).ParseFiles(site...)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Fatalln(err)
 		return
 	}
- 	err = tm.Execute(w, s)
+	err = tm.Execute(w, s)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Fatalln(err)
