@@ -15,15 +15,12 @@ import (
 	"groupietracker/filters"
 )
 
-
-
 // constrains for filters (output on the page)
 type filtersConstrains struct {
 	MinYearCreation,
 	MaxYearCreation int
-	Members []int
+	Members   []int
 	Locations map[string]bool
-
 }
 type application struct {
 	errLog            *log.Logger
@@ -70,24 +67,23 @@ func main() {
 	}
 	infoLog.Printf("artists: %#v\n", app.artists)
 
-	
 	// preparing data for filters
 	app.filtersConstrains = &filtersConstrains{
 		MinYearCreation: 3000,
 		MaxYearCreation: 0,
-		Locations: make(map[string]bool),
+		Locations:       make(map[string]bool),
 	}
-	
+
 	// Get a list of locations for the filter
-	for _,a := range app.artists {
-		for _,l := range a.Locations.Locations {
-			if _,ok:=app.filtersConstrains.Locations[l]; !ok {
-				app.filtersConstrains.Locations[l]=false
+	for _, a := range app.artists {
+		for _, l := range a.Locations.Locations {
+			if _, ok := app.filtersConstrains.Locations[l]; !ok {
+				app.filtersConstrains.Locations[l] = false
 			}
 		}
 	}
 	infoLog.Printf("locations' list: %#v\n", app.filtersConstrains.Locations)
-	
+
 	maxMembers := 0
 	for _, a := range app.artists {
 		if a.CreationDate < app.filtersConstrains.MinYearCreation {
@@ -224,10 +220,25 @@ func (app *application) homePageHandler(w http.ResponseWriter, r *http.Request) 
 	filtersValue.FirstAlbumMonth = r.URL.Query().Get("FirstAlbumMonth")
 	filtersValue.FirstAlbumDay = r.URL.Query().Get("FirstAlbumDay")
 	if filtersValue.FirstAlbumYear != "" {
+		if year, err := strconv.Atoi(filtersValue.FirstAlbumYear); err != nil || year < 1900 || year > time.Now().Year() {
+			app.errLog.Printf("wrong year for album creation %s", err)
+			http.Error(w, "Bad Request", http.StatusBadRequest)
+			return
+		}
 		value := filtersValue.FirstAlbumYear
 		if filtersValue.FirstAlbumMonth != "" && filtersValue.FirstAlbumMonth != "0" {
+			if month, err := strconv.Atoi(filtersValue.FirstAlbumMonth); err != nil || month < 1 || month > 12 {
+				app.errLog.Printf("wrong month for album creation %s", err)
+				http.Error(w, "Bad Request", http.StatusBadRequest)
+				return
+			}
 			value += filtersValue.FirstAlbumMonth
-			if filtersValue.FirstAlbumDay != ""  && filtersValue.FirstAlbumDay != "0"{
+			if filtersValue.FirstAlbumDay != "" && filtersValue.FirstAlbumDay != "0" {
+				if day, err := strconv.Atoi(filtersValue.FirstAlbumMonth); err != nil || day < 1 || day > 31 {
+					app.errLog.Printf("wrong month for album creation %s", err)
+					http.Error(w, "Bad Request", http.StatusBadRequest)
+					return
+				}
 				value += filtersValue.FirstAlbumDay
 				filters.AddGivenFilter(&filtersSet, filters.FilterFirstAlbumDateEq, value)
 			} else {

@@ -1,6 +1,7 @@
 package filters
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -108,6 +109,7 @@ func FilterFirstAlbumYearGt(value string, data *api.Artist) bool {
 func FilterFirstAlbumMonthEq(value string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ym := date[2] + date[1]
+	fmt.Printf("Filter album year=%s, year=%s", value, ym)
 	return ym == value
 }
 
