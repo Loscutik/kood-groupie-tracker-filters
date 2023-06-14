@@ -32,11 +32,13 @@ body{
   font-family: Garute, sans-serif;
 }
 
-header{
+#header{
   text-align: center;
   background-color: #323331;
   color: #E9E6DA;
   padding: 1rem;
+  box-shadow: 3px 0px 10px #323331a6;
+  border-bottom: 1px #1f1c1b;
 }
 h1 {
   font-size: 3.5em;
@@ -222,11 +224,12 @@ a:focus{
     max-height: 5.5rem;
   }
 
-  button{
-    
+  #filbut {
+    position: fixed;
     background-color: #AC1A00;
     color: #EFEFEF;
     max-width: 100%;
+    height: 80px;
     flex: 0 1 auto;
     margin: 1rem auto;
     border: 0;
@@ -234,23 +237,24 @@ a:focus{
     font-size: 2.2rem;
     cursor: pointer;
     font-family: Garute, sans-serif;
+    box-shadow: 3px 0px 15px #32333150;
   }
 
-  #filters {
+  #filtr {
     background-color: rgb(63, 73, 50);
     background: linear-gradient(105deg, rgb(79, 88, 54), rgb(51, 59, 41));
-    height: 500px;
+    height: 900px;
     border-radius: 0px 0px 30px 30px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: 25%;
     margin-right: 25%;
-    box-shadow: 3px 0px 10px #323331;
+    box-shadow: 3px 0px 15px #323331a1;
  }
 
-  #filtr {
-    margin-left: 20%;
-    margin-right: 20%;
+  #filters {
+    margin-left: 2%;
+    margin-right: 2%;
   }
   
   #choosefiltrs {
@@ -267,6 +271,7 @@ a:focus{
     border: 1px black;
     margin-left: 15%;
     background: linear-gradient(145deg, #04AA6D, #047149);
+    margin-top: 20px;
     transition: 1s;
   }
   #subbutt:hover {
@@ -275,49 +280,72 @@ a:focus{
     background: linear-gradient(145deg, #03925d, #04603e);
     box-shadow: -5px -3px 10px #323331;
   }
-
-  .slidecontainer {
-    width: 100%; /* Width of the outside container */
-  }
   
-  /* The slider itself */
   .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 20%; /* Full-width */
-    height: 10px; /* Specified height */
-    margin-left: 200px;
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-    border-radius: 7px;
-  }
-  
-  /* Mouse-over effects */
-  .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
-  
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-    border-radius: 8px;
-  }
-  
-  .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 300px;
+    margin: 20px;
   }
 
-  #location-list option{
-    text-transform: capitalize;
+  .slider input[type="range"] {
+    width: 400px;
+    -webkit-appearance: none;
+    background: #d3d3d3;
+    height: 10px;
+    border-radius: 5px;
+    outline: none;
+    margin: 5px 0;
+    display: grid;
+  }
+  input#minRange {
+    position: relative;
+    display: flex;
+  }
+  input#maxRange[type="range"] {
+    position: relative;
+    display: flex;
+    background: rgba(0,0,0,0);
+    margin-top: 0px;
+  }
+  input#maxRange[type="range"]::-webkit-slider-thumb {
+    margin-top: -25px;
+  }
+  .slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .slider input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .datte {
+    display: flex;
+    height: 20px;
+    margin: 20px;
+  }
+  #minnYear {
+    margin-top: -15px;
+  }
+  #maxxYear {
+    margin-top: -15px;
+  }
+  fieldset {
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.107);
+    margin: 10px;
+    padding: 20px;
+    color: rgb(0, 0, 0);
+    transition: 0.2s;
+  }
+  fieldset:hover {
+    background-color: rgba(0, 0, 0, 0.192);
   }
