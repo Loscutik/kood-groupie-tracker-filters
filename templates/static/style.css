@@ -10,7 +10,6 @@
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
-
 /* Webfont: Garute-Regular */
 @font-face {
   font-family: "Garute";
@@ -26,12 +25,29 @@
 }
 
 body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #E9E6DA;
   box-sizing: border-box;
   font-size: 100%;
   font-family: Garute, sans-serif;
 }
-
+footer {
+  margin-top: auto;
+}
+.button{
+  background-color: #AC1A00;
+  color: #EFEFEF;
+  max-width: 100%;
+  flex: 0 1 auto;
+  margin: 1rem auto;
+  border: 0;
+  padding: 0.5rem 2rem;
+  font-size: 2.2rem;
+  cursor: pointer;
+  font-family: Garute, sans-serif;
+}
 #header{
   text-align: center;
   background-color: #323331;
@@ -43,8 +59,6 @@ body{
 h1 {
   font-size: 3.5em;
 }
-
-
 .quote{
   font-size: 1.5em;
   font-family: Aamiya, sans-serif;
@@ -56,13 +70,11 @@ h1 {
   flex-wrap: wrap;
   justify-content:space-around;
 }
-
 @media screen and (min-width: 900px) {
   .cards {
     margin: 0 3%;
   }
 }
-
 .card{
   display: flex;
   flex-direction: column;
@@ -85,7 +97,6 @@ h1 {
   margin: 2% auto;
   cursor: auto;
 }
-
 .stripe{
   display: block;
   text-decoration: none;
@@ -104,12 +115,10 @@ a:hover{
   cursor: pointer;
   box-shadow: 1rem 0.5rem 0.5rem rgba(56, 53, 53, 0.2);
 }
-
 a:focus{
   box-shadow: 1rem 0.5rem 0.5rem rgba(56, 53, 53, 0.2);
 }
-
-  .card_top {
+.card_top {
     
     display: flex;
     flex-wrap: wrap;
@@ -118,15 +127,14 @@ a:focus{
     font-size: 1rem;
     justify-content: center;
     
-  }
-  
-  .title {
+}
+.title {
     font-weight: bold;
     font-size: 1.1rem;
-  }
+}
   
-  /*-------left side-------*/
-  .card_left{
+/*-------left side-------*/
+.card_left{
     display: flex;
     -flex: 0 1 284px;
     -max-width: 50%;
@@ -134,159 +142,140 @@ a:focus{
     width: 284px;
     flex-direction: column;
     align-content: center;
-  }
-
-    .card_left .band_name{
+}
+.card_left .band_name{
       text-align: right;
       margin: 5% 8% 0;
-    }
-    .cover {
+}
+.cover {
       margin: 8%;
       -flex: 1;
       box-shadow: 0.3rem 0.2rem 0.1rem rgba(56, 53, 53, 0.2);
       max-height: 240px; 
       max-width: 240px;
-    }
+}
 
-    .info_details{
+.info_details{
       margin: 5% 8%;
       font-size: 1rem;
-    }
-    
-    .card_left p{
+}
+.card_left p{
      line-height: 200%;
-    }
-    
-
-
+}
   /*-------right side-------*/
   .card_right{
     flex: 1 0 auto;
     -width: calc(100% - 284px);
     -min-width: 50%;
-  }
-  
-  .band_name{
+}
+.band_name{
     margin: 6% 4% 2% 0.5%;
     text-transform: uppercase;
-  }
-  
-  @counter-style music{
+}
+@counter-style music{
     system: cyclic;
     symbols: "♪";
     suffix: "  ";
-  }
-  
-  ul{
+}
+ul{
     list-style-type: music;
     vertical-align: top;
     margin: 5% 10%;
-  }
-  
-  ul.location p{
+}
+ul.location p{
     text-transform: capitalize;
-  }
-
-  li ul{
+}
+li ul{
     list-style: none;
-  }
-  
-  li {
+}
+li {
     line-height: 200%;
     clear: both;
-  }
-  
-  li>p{
+}
+li>p{
     display: inline-block;
     font-size: 1.2rem;
-  }
-  
-  .location, .date{
+}
+.location, .date{
     display: block;
     margin-top: 15%;
-  }
-  
-  .date{
+}
+.date{
     display: inline-block;
     margin: 0 1% 7%  ;
     float: right;
     font-size: 1.1rem;
     text-align: end;
-  }
-  
-  /*ul.date{
-  }*/
-
-
+}
   /*-------bottom-------*/
-  .card_bottom{
+.card_bottom{
     display: flex;
     max-height: 5.5rem;
-  }
-
-  #filbut {
+}
+  /* CSS for filters */
+#filbut {
     position: fixed;
     background-color: #AC1A00;
     color: #EFEFEF;
     max-width: 100%;
     height: 80px;
     flex: 0 1 auto;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
     border: 0;
     padding: 0.5rem 2rem;
     font-size: 2.2rem;
     cursor: pointer;
     font-family: Garute, sans-serif;
     box-shadow: 3px 0px 15px #32333150;
-  }
-
-  #filtr {
+}
+#filtr {
+    display: none;
     background-color: rgb(63, 73, 50);
     background: linear-gradient(105deg, rgb(79, 88, 54), rgb(51, 59, 41));
-    height: 900px;
+    height: 1030px;
     border-radius: 0px 0px 30px 30px;
     padding-left: 20px;
     padding-right: 20px;
     margin-left: 25%;
     margin-right: 25%;
     box-shadow: 3px 0px 15px #323331a1;
- }
-
-  #filters {
+    margin-bottom: 20px;
+}
+#filters {
     margin-left: 2%;
     margin-right: 2%;
-  }
-  
-  #choosefiltrs {
+}
+#choosefiltrs {
     padding: 20px;
     text-align: center;
     color: rgb(169, 158, 129);
     font-family: "Garute";
     font-size: 30px;
-  }
-  #subbutt {
+}
+#subbutt {
     width: 200px;
     height: 50px;
     border-radius: 30px;
     border: 1px black;
-    margin-left: 15%;
+    font-size: 20px;
+    font-family: "Garute";
+    margin-left: 33%;
     background: linear-gradient(145deg, #04AA6D, #047149);
-    margin-top: 20px;
+    margin-top: 30px;
     transition: 1s;
-  }
-  #subbutt:hover {
+}
+#subbutt:hover {
     border-radius: 30px;
     border: 1px black;
     background: linear-gradient(145deg, #03925d, #04603e);
-    box-shadow: -5px -3px 10px #323331;
-  }
-  
-  .slider {
+    box-shadow: 5px 3px 7px #323331;
+}
+  /* sliders */
+.slider {
     width: 300px;
     margin: 20px;
-  }
-
-  .slider input[type="range"] {
+}
+.slider input[type="range"] {
     width: 400px;
     -webkit-appearance: none;
     background: #d3d3d3;
@@ -295,21 +284,21 @@ a:focus{
     outline: none;
     margin: 5px 0;
     display: grid;
-  }
-  input#minRange {
+}
+input#minRange {
     position: relative;
     display: flex;
-  }
-  input#maxRange[type="range"] {
+}
+input#maxRange[type="range"] {
     position: relative;
     display: flex;
     background: rgba(0,0,0,0);
     margin-top: 0px;
-  }
-  input#maxRange[type="range"]::-webkit-slider-thumb {
+}
+input#maxRange[type="range"]::-webkit-slider-thumb {
     margin-top: -25px;
-  }
-  .slider input[type="range"]::-webkit-slider-thumb {
+}
+.slider input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 20px;
@@ -317,35 +306,121 @@ a:focus{
     background: #4CAF50;
     border-radius: 50%;
     cursor: pointer;
-  }
-
-  .slider input[type="range"]::-moz-range-thumb {
+}
+.slider input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
     background: #4CAF50;
     border-radius: 50%;
     cursor: pointer;
-  }
-  .datte {
+}
+.datte {
     display: flex;
     height: 20px;
     margin: 20px;
-  }
-  #minnYear {
+}
+#minnYear {
     margin-top: -15px;
-  }
-  #maxxYear {
+}
+#maxxYear {
     margin-top: -15px;
-  }
-  fieldset {
+}
+fieldset {
     border-radius: 10px;
     border: none;
+    font-family: "Garute";
+    font-size: 20px;
     background-color: rgba(0, 0, 0, 0.107);
     margin: 10px;
     padding: 20px;
     color: rgb(0, 0, 0);
     transition: 0.2s;
-  }
-  fieldset:hover {
+}
+fieldset:hover {
     background-color: rgba(0, 0, 0, 0.192);
-  }
+}
+/* Container for checkboxes */
+.container {
+  display: inline-flex;
+  position: relative;
+  padding-left: 35px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.2s;
+}
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eeeeee00;
+  border: 2px solid #4caf4f80;
+  border-radius: 3px;
+}
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #00000023;
+}
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #4caf4f;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 3px;
+  height: 8px;
+  border: solid #d3d3d3;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+input[type=text] {
+  background-color: #eeeeee00;
+  border: 2px solid #3f90427b;
+  border-radius: 30px;
+  font-size: 22px;
+  color: rgba(228, 228, 228, 0.79);
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 20px;
+  margin-left: 20%;
+}
+input[type=text]:focus {
+  background-color: #d3d3d321;
+} 
+.colorr {
+  color: rgba(228, 228, 228, 0.304);
+}
+legend {
+  padding: 7px;
+  background-color: #4caf4fab;
+}
