@@ -5,7 +5,7 @@
 {{define "content"}}
 
 <button id="filbut" onclick="filter()">
-   <i class="fa-solid fa-filter"></i> 
+   <i class="fa-solid fa-lg fa-sliders"></i> 
 </button>
 
 <!-- FILTERS -->
@@ -15,7 +15,7 @@
   <p id="choosefiltrs">CHOOSE FILTERS:</p>
     <fieldset>
       <legend>Creation Date:</legend>
-      <p>Search year from <span id="CreationYearFrom">1950</span> to <span id="CreationYearTo">2023</span></p>
+      <p class="colorr">Search year from <span id="CreationYearFrom">1950</span> to <span id="CreationYearTo">2023</span></p>
       <div class="slider">
         <input type="range" id="minRange" min="1950" max="2023" value="1950">
         <input type="range" id="maxRange" min="1950" max="2023" value="2023">
@@ -23,9 +23,9 @@
     </fieldset>  
     <fieldset>
       <legend>First Album Date:</legend> 
-      <p>Search date from <span id="frdate">1</span> <span id="frmonth">January</span> <span id="fryear">{{.FiltersConstrains.MinYearCreation}}</span>...</p>
+      <p class="colorr">Search date from <span id="frdate">1</span> <span id="frmonth">January</span> <span id="fryear">{{.FiltersConstrains.MinYearCreation}}</span>...</p>
     <div class="datte">
-      <select name="Day">
+      <select name="Day" id="frday">
         <option value="0">---</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -59,7 +59,7 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="Month">
+      <select name="Month" id="frmont">
         <option value="0">---</option>
         <option value="1">January</option>
         <option value="2">February</option>
@@ -79,9 +79,9 @@
         </div>
       </div>
       
-        <p>...to <span id="todate">1</span> <span id="tomonth">July</span> <span id="toyear">{{.FiltersConstrains.MaxYearCreation}}</span></p>
+        <p class="colorr">...to <span id="todate">1</span> <span id="tomonth">July</span> <span id="toyear">{{.FiltersConstrains.MaxYearCreation}}</span></p>
         <div class="datte">
-        <select name="Day">
+        <select name="Day" id="today">
         <option value="0">---</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -115,7 +115,7 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="Month">
+      <select name="Month" id="tomont">
         <option value="0">---</option>
         <option value="1">January</option>
         <option value="2">February</option>
@@ -140,17 +140,10 @@
       {{$flags := .FiltersValues.Members }}
       <div>
         {{range $index, $i := .FiltersConstrains.Members}}
-          <span>
+        <label class="container" class="colorr">{{$i}}
             <input type="checkbox" id={{$i}} name="Members" value={{$i}} {{if index $flags $index}}checked{{end}} />
-          </span>
-        {{end}}
-      </div>
-
-      <div>
-        {{range $index, $i := .FiltersConstrains.Members}}
-          <span>
-            <label for={{$i}}> {{$i}}</label>
-          </span>
+            <span class="checkmark"></span>
+          </label>
         {{end}}
       </div>
     </fieldset>  
@@ -178,13 +171,11 @@
 
   <input type="submit" value="Submit" id="subbutt">
 </form>
- <!--<script>rangeValue()</script> -->
 </div>
  <!-- FILTERS -->
 
 
 <main  class="cards">
-
 {{ range $i, $card := .Artists }}
   <a href="/info?id={{.Id}}" class="card" id="{{ .Id }}">
     <div class="card_top">
