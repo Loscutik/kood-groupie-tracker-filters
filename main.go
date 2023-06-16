@@ -214,14 +214,14 @@ func (app *application) homePageHandler(w http.ResponseWriter, r *http.Request) 
 	filtersValue.FirstAlbumTo.month = r.URL.Query().Get("FirstAlbumToMonth")
 	filtersValue.FirstAlbumTo.day = r.URL.Query().Get("FirstAlbumToDay")
 
-	err := runDateFilter(filtersValue.FirstAlbumFrom, "Gt", filtersSet, w)
+	err := runDateFilter(filtersValue.FirstAlbumFrom, "Gt", &filtersSet)
 	if err != nil {
 		app.errLog.Printf("running a filter for First Album Date failure: %v ", err)
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
 
-	err = runDateFilter(filtersValue.FirstAlbumTo, "Lt", filtersSet, w)
+	err = runDateFilter(filtersValue.FirstAlbumTo, "Lt", &filtersSet)
 	if err != nil {
 		app.errLog.Printf("running a filter for First Album Date failure: %v ", err)
 		http.Error(w, "Bad Request", http.StatusBadRequest)

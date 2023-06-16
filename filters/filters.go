@@ -126,19 +126,19 @@ func FilterFirstAlbumMonthGt(givenYM string, data *api.Artist) bool {
 func FilterFirstAlbumDateEq(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd == givenYMD 
+	return ymd == givenYMD
 }
 
 func FilterFirstAlbumDateLt(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd <= givenYMD 
+	return ymd <= givenYMD
 }
 
 func FilterFirstAlbumDateGt(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd >= givenYMD 
+	return ymd >= givenYMD
 }
 
 func FilterLocationContain(value string, data *api.Artist) bool {

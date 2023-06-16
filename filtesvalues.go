@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"strconv"
 	"time"
 
@@ -65,24 +64,26 @@ runs a filter for the given date.
 It checks if the date consists of the year, month, day, or of the year and month, or of only a year.
 Then it runs the filter for the given operation. The operation must be a one of the follow strings: "Eq", "Lt", "Gt".
 */
-func runDateFilter(currentFilter date, operation string, filtersSet []filters.SetGivenFilter, w http.ResponseWriter) error {
+func runDateFilter(currentFilter date, operation string, filtersSet *[]filters.SetGivenFilter) error {
 	operationFuncs := map[string](map[string]filters.Filter){
-		"Date":{
+		"Date": {
 			"Eq": filters.FilterFirstAlbumDateEq,
 			"Lt": filters.FilterFirstAlbumDateLt,
 			"Gt": filters.FilterFirstAlbumDateGt,
 		},
-		"Month":{
+		"Month": {
 			"Eq": filters.FilterFirstAlbumMonthEq,
 			"Lt": filters.FilterFirstAlbumMonthLt,
 			"Gt": filters.FilterFirstAlbumMonthGt,
 		},
-		"Year":{
+		"Year": {
 			"Eq": filters.FilterFirstAlbumYearEq,
 			"Lt": filters.FilterFirstAlbumYearLt,
 			"Gt": filters.FilterFirstAlbumYearGt,
 		},
 	}
+
+
 	if currentFilter.notEmptyYear() {
 		if !currentFilter.checkYear(1900, time.Now().Year()) {
 			return fmt.Errorf("wrong years for album creation %s", currentFilter.year)
@@ -97,12 +98,14 @@ func runDateFilter(currentFilter date, operation string, filtersSet []filters.Se
 				if !currentFilter.isValidDay() {
 					return fmt.Errorf("wrong day for album creation %s.%s.%s", currentFilter.day, currentFilter.month, currentFilter.year)
 				}
-				filters.AddGivenFilter(&filtersSet, operationFuncs["Date"][operation], currentFilter.mergeDayMonthYear())
+
+
+				filters.AddGivenFilter(filtersSet, operationFuncs["Date"][operation], currentFilter.mergeDayMonthYear())
 			} else {
-				filters.AddGivenFilter(&filtersSet, operationFuncs["Month"][operation], currentFilter.mergeMonthYear())
+				filters.AddGivenFilter(filtersSet, operationFuncs["Month"][operation], currentFilter.mergeMonthYear())
 			}
 		} else {
-			filters.AddGivenFilter(&filtersSet, operationFuncs["Year"][operation], currentFilter.year)
+			filters.AddGivenFilter(filtersSet, operationFuncs["Year"][operation], currentFilter.year)
 		}
 	}
 	return nil
