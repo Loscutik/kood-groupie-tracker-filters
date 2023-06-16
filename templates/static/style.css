@@ -165,8 +165,6 @@ a:focus{
   /*-------right side-------*/
   .card_right{
     flex: 1 0 auto;
-    -width: calc(100% - 284px);
-    -min-width: 50%;
 }
 .band_name{
     margin: 6% 4% 2% 0.5%;
