@@ -15,17 +15,17 @@
   <p id="choosefiltrs">CHOOSE FILTERS:</p>
     <fieldset>
       <legend>Creation Date:</legend>
-      <p class="colorr">Search year from <span id="CreationYearFrom">1950</span> to <span id="CreationYearTo">2023</span></p>
+      <p class="colorr">Search year from <span id="CreationYearFrom">{{.FiltersConstrains.MinYearCreation}}</span> to <span id="CreationYearTo">2023</span></p>
       <div class="slider">
-        <input type="range" id="minRange" min="1950" max="2023" value="1950">
-        <input type="range" id="maxRange" min="1950" max="2023" value="2023">
+        <input type="range" id="minRange" min="1950" max="2023" value="1950" name="CreationDateFrom">
+        <input type="range" id="maxRange" min="1950" max="2023" value="2023" name="CreationDateTo">
       </div>
     </fieldset>  
     <fieldset>
       <legend>First Album Date:</legend> 
       <p class="colorr">Search date from <span id="frdate">1</span> <span id="frmonth">January</span> <span id="fryear">{{.FiltersConstrains.MinYearCreation}}</span>...</p>
     <div class="datte">
-      <select name="Day" id="frday">
+      <select name="FirstAlbumFromDay" id="frday">
         <option value="0">---</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -59,7 +59,7 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="Month" id="frmont">
+      <select name="FirstAlbumFromMonth" id="frmont">
         <option value="0">---</option>
         <option value="1">January</option>
         <option value="2">February</option>
@@ -75,13 +75,13 @@
         <option value="12">December</option>
       </select>
         <div class="slider">
-          <input type="range" name="CreationDateFrom" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MinYearCreation}} class="slider" id="minnYear">
+          <input type="range" name="FirstAlbumFromYear" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MinYearCreation}} class="slider" id="minnYear">
         </div>
       </div>
       
         <p class="colorr">...to <span id="todate">1</span> <span id="tomonth">July</span> <span id="toyear">{{.FiltersConstrains.MaxYearCreation}}</span></p>
         <div class="datte">
-        <select name="Day" id="today">
+        <select name="FirstAlbumToDay" id="today">
         <option value="0">---</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -115,7 +115,7 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="Month" id="tomont">
+      <select name="FirstAlbumToMonth" id="tomont">
         <option value="0">---</option>
         <option value="1">January</option>
         <option value="2">February</option>
@@ -131,7 +131,7 @@
         <option value="12">December</option>
       </select>
       <div class="slider">
-        <input type="range" name="CreationDateTo" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MaxYearCreation}} class="slider" id="maxxYear">
+        <input type="range" name="FirstAlbumToYear" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MaxYearCreation}} class="slider" id="maxxYear">
       </div>
     </div>
     </fieldset>  

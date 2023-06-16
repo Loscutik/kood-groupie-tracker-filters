@@ -8,27 +8,27 @@ import (
 )
 
 type (
-	filter   func(value string, data *api.Artist) bool
-	filterOr func(values []int, data *api.Artist) bool
+	Filter   func(value string, data *api.Artist) bool
+	FilterOr func(values []int, data *api.Artist) bool
 )
 
 type SetGivenFilter struct {
-	FilterFunc filter
+	FilterFunc Filter
 	Value      string
 }
 type SetGivenFilterOr struct {
-	FilterFunc filterOr
+	FilterFunc FilterOr
 	Value      []int
 }
 
-func AddGivenFilter(givenFilters *[]SetGivenFilter, filterFunc filter, value string) {
+func AddGivenFilter(givenFilters *[]SetGivenFilter, filterFunc Filter, value string) {
 	*givenFilters = append(*givenFilters, SetGivenFilter{
 		FilterFunc: filterFunc,
 		Value:      value,
 	})
 }
 
-func AddGivenFilterOr(givenFilters *[]SetGivenFilterOr, filterFunc filterOr, value []int) {
+func AddGivenFilterOr(givenFilters *[]SetGivenFilterOr, filterFunc FilterOr, value []int) {
 	*givenFilters = append(*givenFilters, SetGivenFilterOr{
 		FilterFunc: filterFunc,
 		Value:      value,
@@ -90,55 +90,55 @@ func FilterYearCreatingGt(value string, data *api.Artist) bool {
 	return data.CreationDate >= year
 }
 
-func FilterFirstAlbumYearEq(value string, data *api.Artist) bool {
+func FilterFirstAlbumYearEq(givenYear string, data *api.Artist) bool {
 	year := strings.Split(data.FirstAlbum, "-")[2]
-	return year == value
+	return year == givenYear
 }
 
-func FilterFirstAlbumYearLt(value string, data *api.Artist) bool {
+func FilterFirstAlbumYearLt(givenYear string, data *api.Artist) bool {
 	year := strings.Split(data.FirstAlbum, "-")[2]
-	return year <= value
+	return year <= givenYear
 }
 
-func FilterFirstAlbumYearGt(value string, data *api.Artist) bool {
+func FilterFirstAlbumYearGt(givenYear string, data *api.Artist) bool {
 	year := strings.Split(data.FirstAlbum, "-")[2]
-	return year >= value
+	return year >= givenYear
 }
 
-func FilterFirstAlbumMonthEq(value string, data *api.Artist) bool {
+func FilterFirstAlbumMonthEq(givenYM string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ym := date[2] + date[1]
-	return ym == value
+	return ym == givenYM
 }
 
-func FilterFirstAlbumMonthLt(value string, data *api.Artist) bool {
+func FilterFirstAlbumMonthLt(givenYM string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ym := date[2] + date[1]
-	return ym <= value
+	return ym <= givenYM
 }
 
-func FilterFirstAlbumMonthGt(value string, data *api.Artist) bool {
+func FilterFirstAlbumMonthGt(givenYM string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ym := date[2] + date[1]
-	return ym >= value
+	return ym >= givenYM
 }
 
-func FilterFirstAlbumDateEq(value string, data *api.Artist) bool {
+func FilterFirstAlbumDateEq(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd == value
+	return ymd == givenYMD 
 }
 
-func FilterFirstAlbumDateLt(value string, data *api.Artist) bool {
+func FilterFirstAlbumDateLt(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd <= value
+	return ymd <= givenYMD 
 }
 
-func FilterFirstAlbumDateGt(value string, data *api.Artist) bool {
+func FilterFirstAlbumDateGt(givenYMD string, data *api.Artist) bool {
 	date := strings.Split(data.FirstAlbum, "-")
 	ymd := date[2] + date[1] + date[0]
-	return ymd >= value
+	return ymd >= givenYMD 
 }
 
 func FilterLocationContain(value string, data *api.Artist) bool {
