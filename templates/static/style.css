@@ -165,6 +165,8 @@ a:focus{
   /*-------right side-------*/
   .card_right{
     flex: 1 0 auto;
+    -width: calc(100% - 284px);
+    -min-width: 50%;
 }
 .band_name{
     margin: 6% 4% 2% 0.5%;
@@ -257,7 +259,7 @@ li>p{
     border: 1px black;
     font-size: 20px;
     font-family: "Garute";
-    margin-left: 33%;
+    margin-left: 9%;
     background: linear-gradient(145deg, #04AA6D, #047149);
     margin-top: 30px;
     transition: 1s;
@@ -267,6 +269,28 @@ li>p{
     border: 1px black;
     background: linear-gradient(145deg, #03925d, #04603e);
     box-shadow: 5px 3px 7px #323331;
+}
+#buttonssub {
+  display: inline-flex;
+  margin: 20px;
+}
+#resetbutt {
+    padding: 14px 40px 14px 40px;
+    border-radius: 30px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #1f1c1b;
+    font-family: "Garute";
+    background: linear-gradient(145deg, #038454, #04603e);
+    margin-top: 30px;
+    margin-left: 20px;
+    transition: 1s;
+}
+#resetbutt:hover {
+  border-radius: 30px;
+  border: 1px black;
+  background: linear-gradient(145deg, #03764c, #044f34);
+  box-shadow: 5px 3px 7px #323331;
 }
   /* sliders */
 .slider {
