@@ -15,28 +15,27 @@
   <p id="choosefiltrs">CHOOSE FILTERS:</p>
     <fieldset>
       <legend>Creation Date:</legend>
-      <p class="colorr">Search year from <span id="CreationYearFrom" class="outCreationDateFrom">{{.FiltersConstrains.MinYearCreation}}</span> to <span id="CreationYearTo" class="outCreationDateTo">{{.FiltersConstrains.MaxYearCreation}}</span></p>
+      <p class="colorr">Search year from <span id="CreationYearFrom">1950</span> to <span id="CreationYearTo">2023</span></p>
       <div class="slider">
-        <input type="range" id="minRange" min="{{.FiltersConstrains.MinYearCreation}}" max="{{.FiltersConstrains.MaxYearCreation}}" value="{{.FiltersConstrains.MinYearCreation}}" name="CreationDateFrom" class="CreationDateFrom">
-        <input type="range" id="maxRange" min="{{.FiltersConstrains.MinYearCreation}}" max="{{.FiltersConstrains.MaxYearCreation}}" value="{{.FiltersConstrains.MaxYearCreation}}" name="CreationDateTo" class="CreationDateTo">
+        <input type="range" id="minRange" min="1950" max="2023" value="1950">
+        <input type="range" id="maxRange" min="1950" max="2023" value="2023">
       </div>
-    </fieldset> 
-
+    </fieldset>  
     <fieldset>
       <legend>First Album Date:</legend> 
-      <p class="colorr">Search date from <span id="frdate" class="outFirstAlbumFromDay">1</span> <span id="frmonth"  class="outFirstAlbumFromMonth">January</span> <span id="fryear"  class="outFirstAlbumFromYear">{{.FiltersConstrains.MinYearCreation}}</span>...</p>
+      <p class="colorr">Search date from <span id="frdate">1</span> <span id="frmonth">January</span> <span id="fryear">{{.FiltersConstrains.MinYearCreation}}</span>...</p>
     <div class="datte">
-      <select name="FirstAlbumFromDay" class="FirstAlbumFromDay" id="frday">
+      <select name="Day" id="frday">
         <option value="0">---</option>
-        <option value="01">1</option>
-        <option value="02">2</option>
-        <option value="03">3</option>
-        <option value="04">4</option>
-        <option value="05">5</option>
-        <option value="06">6</option>
-        <option value="07">7</option>
-        <option value="08">8</option>
-        <option value="09">9</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
         <option value="10">10</option>
         <option value="11">11</option>
         <option value="12">12</option>
@@ -60,39 +59,39 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="FirstAlbumFromMonth", class="FirstAlbumFromMonth" id="frmont">
+      <select name="Month" id="frmont">
         <option value="0">---</option>
-        <option value="01">January</option>
-        <option value="02">February</option>
-        <option value="03">March</option>
-        <option value="04">April</option>
-        <option value="05">May</option>
-        <option value="06">June</option>
-        <option value="07">July</option>
-        <option value="08">August</option>
-        <option value="09">September</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
         <option value="10">October</option>
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
         <div class="slider">
-          <input type="range" name="FirstAlbumFromYear", class="FirstAlbumFromYear" min={{.FiltersConstrains.MinYearCreation}} max={{nowYear}} value={{.FiltersConstrains.MinYearCreation}} class="slider" id="minnYear">
+          <input type="range" name="CreationDateFrom" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MinYearCreation}} class="slider" id="minnYear">
         </div>
       </div>
       
-        <p class="colorr">...to <span id="todate" class="outFirstAlbumToDay">1</span> <span id="tomonth" class="outFirstAlbumToMonth">July</span> <span id="toyear" class="outFirstAlbumToYear">{{nowYear}}</span></p>
+        <p class="colorr">...to <span id="todate">1</span> <span id="tomonth">July</span> <span id="toyear">{{.FiltersConstrains.MaxYearCreation}}</span></p>
         <div class="datte">
-        <select name="FirstAlbumToDay" class="FirstAlbumToDay" id="today">
+        <select name="Day" id="today">
         <option value="0">---</option>
-        <option value="01">1</option>
-        <option value="02">2</option>
-        <option value="03">3</option>
-        <option value="04">4</option>
-        <option value="05">5</option>
-        <option value="06">6</option>
-        <option value="07">7</option>
-        <option value="08">8</option>
-        <option value="09">9</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
         <option value="10">10</option>
         <option value="11">11</option>
         <option value="12">12</option>
@@ -116,34 +115,33 @@
         <option value="30">30</option>
         <option value="31">31</option>
       </select>
-      <select name="FirstAlbumToMonth" class="FirstAlbumToMonth" id="tomont">
+      <select name="Month" id="tomont">
         <option value="0">---</option>
-        <option value="01">January</option>
-        <option value="02">February</option>
-        <option value="03">March</option>
-        <option value="04">April</option>
-        <option value="05">May</option>
-        <option value="06">June</option>
-        <option value="07">July</option>
-        <option value="08">August</option>
-        <option value="09">September</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
         <option value="10">October</option>
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
       <div class="slider">
-        <input type="range" name="FirstAlbumToYear" class="FirstAlbumToYear" min={{.FiltersConstrains.MinYearCreation}} max={{nowYear}} value={{nowYear}} class="slider" id="maxxYear">
+        <input type="range" name="CreationDateTo" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersConstrains.MaxYearCreation}} class="slider" id="maxxYear">
       </div>
     </div>
     </fieldset>  
     <fieldset>
-
       <legend>Number Of Members:</legend> 
       {{$flags := .FiltersValues.Members }}
       <div>
         {{range $index, $i := .FiltersConstrains.Members}}
         <label class="container" class="colorr">{{$i}}
-            <input type="checkbox" id="m{{$i}}" name="Members" class="Members" value={{$i}} />
+            <input type="checkbox" id={{$i}} name="Members" value={{$i}} {{if index $flags $index}}checked{{end}} />
             <span class="checkmark"></span>
           </label>
         {{end}}
@@ -152,7 +150,7 @@
    
   <fieldset>
       <legend>Locations Of Concerts:</legend> 
-      <input type="text" id="location-filter" name="Location" class="Location" list="location-list">
+      <input type="text" id="location-filter" name="Location" list="location-list">
     <datalist id="location-list">
       <option id = "0" value="">--Please choose an option--</option>
       {{$selected := .FiltersValues.Location }}
@@ -164,11 +162,16 @@
 
 <fieldset>
     <legend>Name:</legend> 
-    <input type="text" name="Name" class="Name" />
+    <input type="text" name="Name"/>
 </fieldset>  
       
 
+
+  {{/*<input type="range" id="FirstAlbumYear" name="FirstAlbumYear1" min={{.FiltersConstrains.MinYearCreation}} max={{.FiltersConstrains.MaxYearCreation}} value={{.FiltersValues.FirstAlbumYear}}>*/}}
+  <div id="buttonssub"></div>
   <input type="submit" value="Submit" id="subbutt">
+  <a href="http://localhost:8080" id="resetbutt">Reset filters</a>
+  </div>
 </form>
 </div>
  <!-- FILTERS -->
@@ -210,7 +213,6 @@
     No bands 
   {{end}}
 
-</main>
+</main> 
+
 {{end}}
-
-
